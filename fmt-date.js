@@ -13,24 +13,17 @@ export default {
 }
 
 function getTime (dateObj) {
-  let meridiem
-  let mins
-  let hours = dateObj.getHours()
+  let paddedMinutes
   const minutes = dateObj.getMinutes().toString()
+  let hours = dateObj.getHours()
 
-  mins = minutes <= 9 ? minutes.padStart(2, 0) : mins = minutes
-  meridiem = hours <= 11 ? 'am' : 'pm'
-
-  if (dateObj.getHours() <= 11) {
-    meridiem = 'am'
-  } else {
-    meridiem = 'pm'
-  }
+  paddedMinutes = minutes <= 9 ? minutes.padStart(2, 0) : paddedMinutes = minutes
+  const meridiem = hours <= 11 ? 'am' : 'pm'
 
   hours = hours % 12
   if (!hours) hours = 12
 
-  const time = `${hours}:${mins} ${meridiem}`
+  const time = `${hours}:${paddedMinutes} ${meridiem}`
   return time
 }
 
